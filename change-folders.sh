@@ -1,14 +1,30 @@
 #!/bin/bash
+
+# Script to change all user directories to their default english paths.
+# Used because these folders can sometimes be set as their localized name,
+# which is a pain to type in the terminal.
+#
+# English defaults taken from Pop_OS 21.04
+
+Folders=('Desktop' 'Downloads' 'Templates' 'Public' 'Documents' 'Music' 'Pictures' 'Videos')
+Names=('DESKTOP' 'DOWNLOADS' 'TEMPLATES' 'PUBLICSHARE' 'DOCUMENTS' 'MUSIC' 'PICTURES' 'VIDEOS')
+
+currentDir=`pwd`
 cd $HOME
-mkdir Desktop Downloads Templates Public Documents Music Pictures Videos
 
-xdg-user-dirs-update --set DESKTOP $HOME/Desktop
-xdg-user-dirs-update --set DOWNLOAD $HOME/Downloads
-xdg-user-dirs-update --set TEMPLATES $HOME/Templates
-xdg-user-dirs-update --set PUBLICSHARE $HOME/Public
-xdg-user-dirs-update --set DOCUMENTS $HOME/Documents
-xdg-user-dirs-update --set MUSIC $HOME/Music
-xdg-user-dirs-update --set PICTURES $HOME/Pictures
-xdg-user-dirs-update --set VIDEOS $HOME/Videos
+# Create english directories, and set as user dirs
+for f in ${Folders[@]}; do
+  mkdir $f
+done
 
-echo "Done"
+for ((i = 0; i < 8; i++)); do
+  xdg-user-dirs-update --set ${Names[i]} $HOME/${Folders[i]}
+done
+
+# Copy desktop file on Manjaro
+cd $currentDir
+if [[ -f ./.directory ]]; then
+  cp ./.directory ../Desktop/
+fi
+
+echo "User dirs changes, you may now delete the old directories"
