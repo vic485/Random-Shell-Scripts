@@ -7,7 +7,7 @@
 # English defaults taken from Pop_OS 21.04
 
 Folders=('Desktop' 'Downloads' 'Templates' 'Public' 'Documents' 'Music' 'Pictures' 'Videos')
-Names=('DESKTOP' 'DOWNLOADS' 'TEMPLATES' 'PUBLICSHARE' 'DOCUMENTS' 'MUSIC' 'PICTURES' 'VIDEOS')
+Names=('DESKTOP' 'DOWNLOAD' 'TEMPLATES' 'PUBLICSHARE' 'DOCUMENTS' 'MUSIC' 'PICTURES' 'VIDEOS')
 
 currentDir=`pwd`
 cd $HOME
